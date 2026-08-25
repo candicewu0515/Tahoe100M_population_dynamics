@@ -1,0 +1,109 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "17px",
+    "lineColor": "#64748b",
+    "primaryTextColor": "#0f172a"
+  },
+  "flowchart": {
+    "curve": "basis",
+    "nodeSpacing": 34,
+    "rankSpacing": 66,
+    "padding": 16
+  }
+}}%%
+
+flowchart TB
+    USER(["Public user"])
+
+    subgraph DATA["1  ·  Data foundation"]
+        direction LR
+        EXPR[("Expression matrix<br/>.h5ad")]
+        META[("Metadata & annotations<br/>drug · cell line · dose · targets")]
+        CATALOG["Query-ready<br/>data catalog"]
+        EXPR --> CATALOG
+        META --> CATALOG
+    end
+
+    subgraph INTERFACE["2  ·  Public interface"]
+        direction TB
+        APP{{"Tahoe-100M<br/>Perturbation Explorer"}}
+
+        subgraph DISCOVERY["Explore and select"]
+            direction LR
+            BROWSE["Browse responses<br/>by drug or cell line"]
+            FILTER["Refine condition<br/>dose · gene · pathway"]
+            META_VIEW["Linked metadata<br/>drug · cell line · sample"]
+        end
+
+        REQUEST(["Launch selected analysis"])
+        APP --> BROWSE
+        APP --> FILTER
+        APP --> META_VIEW
+        BROWSE --> REQUEST
+        FILTER --> REQUEST
+    end
+
+    subgraph SERVICES["3  ·  Team analysis services"]
+        direction TB
+        ROUTER["Condition request<br/>drug × cell line × dose"]
+
+        subgraph MODULES["Independent modules"]
+            direction LR
+            STATS["Population statistics<br/>effect · heterogeneity · DE · uncertainty"]
+            PCA["PCA analysis<br/>coordinates · visualization"]
+            TRAJ["Dose trajectory<br/>DMSO → low → medium → high"]
+        end
+
+        FOCUS["Biological focus<br/>Find residual subpopulations<br/>that may be non-responders"]
+        ROUTER --> STATS
+        ROUTER --> PCA
+        ROUTER --> TRAJ
+        STATS -. "candidate signal" .-> FOCUS
+    end
+
+    subgraph RESULTS["4  ·  Public results"]
+        direction LR
+        CONTRACT["Standard result contract<br/>plots · statistics · provenance"]
+        PLOTS["Interactive plots"]
+        TABLES["Results tables"]
+        DOWNLOAD["Downloadable results"]
+        CONTRACT --> PLOTS
+        CONTRACT --> TABLES
+        CONTRACT --> DOWNLOAD
+    end
+
+    USER --> APP
+    CATALOG --> APP
+    REQUEST --> ROUTER
+    FOCUS --> CONTRACT
+    PCA --> CONTRACT
+    TRAJ --> CONTRACT
+
+    classDef user fill:#0f172a,stroke:#0f172a,color:#ffffff,stroke-width:2.5px;
+    classDef data fill:#ccfbf1,stroke:#0f766e,color:#134e4a,stroke-width:2px;
+    classDef app fill:#dbeafe,stroke:#2563eb,color:#1e3a8a,stroke-width:3px;
+    classDef action fill:#eff6ff,stroke:#60a5fa,color:#1e40af,stroke-width:1.5px;
+    classDef request fill:#fef3c7,stroke:#d97706,color:#78350f,stroke-width:2.5px;
+    classDef service fill:#ede9fe,stroke:#7c3aed,color:#4c1d95,stroke-width:2px;
+    classDef focus fill:#fff7ed,stroke:#ea580c,color:#9a3412,stroke-width:2.5px;
+    classDef contract fill:#f3e8ff,stroke:#9333ea,color:#581c87,stroke-width:2.5px;
+    classDef output fill:#ecfccb,stroke:#65a30d,color:#365314,stroke-width:2px;
+
+    class USER user;
+    class EXPR,META,CATALOG data;
+    class APP app;
+    class BROWSE,FILTER,META_VIEW action;
+    class REQUEST,ROUTER request;
+    class STATS,PCA,TRAJ service;
+    class FOCUS focus;
+    class CONTRACT contract;
+    class PLOTS,TABLES,DOWNLOAD output;
+
+    style DATA fill:#f0fdfa,stroke:#99f6e4,stroke-width:2px,color:#134e4a
+    style INTERFACE fill:#f8fafc,stroke:#93c5fd,stroke-width:2.5px,color:#1e3a8a
+    style DISCOVERY fill:#ffffff,stroke:#dbeafe,stroke-width:1px,color:#1e3a8a
+    style SERVICES fill:#faf5ff,stroke:#c4b5fd,stroke-width:2px,color:#4c1d95
+    style MODULES fill:#ffffff,stroke:#ede9fe,stroke-width:1px,color:#4c1d95
+    style RESULTS fill:#f7fee7,stroke:#bef264,stroke-width:2px,color:#365314
