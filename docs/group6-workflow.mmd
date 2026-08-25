@@ -2,7 +2,7 @@
   "theme": "base",
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "17px",
+    "fontSize": "20px",
     "lineColor": "#64748b",
     "primaryTextColor": "#0f172a"
   },
@@ -32,9 +32,9 @@ flowchart TB
 
         subgraph DISCOVERY["Explore and select"]
             direction LR
-            BROWSE["Browse responses<br/>by drug or cell line"]
-            FILTER["Refine condition<br/>dose · gene · pathway"]
-            META_VIEW["Linked metadata<br/>drug · cell line · sample"]
+            BROWSE["Browse by<br/>drug or cell line"]
+            FILTER["Filter by<br/>dose · gene · pathway"]
+            META_VIEW["View linked<br/>metadata"]
         end
 
         REQUEST(["Launch selected analysis"])
@@ -51,8 +51,8 @@ flowchart TB
 
         subgraph MODULES["Independent modules"]
             direction LR
-            STATS["Population statistics<br/>effect · heterogeneity · DE · uncertainty"]
-            PCA["PCA analysis<br/>coordinates · visualization"]
+            STATS["Population statistics<br/>effect · heterogeneity · uncertainty"]
+            PCA["PCA analysis<br/>coordinates · plot"]
             TRAJ["Dose trajectory<br/>DMSO → low → medium → high"]
         end
 
