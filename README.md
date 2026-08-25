@@ -72,11 +72,15 @@ The UI is intentionally separated from heavy computation. Each team analysis can
 
 This lets the interface switch from demo responses to HPC-generated JSON/Parquet summaries without redesigning the website.
 
+Team-facing files are documented in the [`docs/data` integration guide](docs/data/README.md), with versioned [catalog](docs/schemas/catalog.schema.json) and [result](docs/schemas/result.schema.json) JSON schemas.
+
 ## Current scope
 
 - [x] Responsive public interface prototype
 - [x] Drug, cell-line, dose, feature, and analysis selectors
 - [x] Interactive demo charts and linked metadata panel
+- [x] Shareable query URLs and standardized JSON/CSV/SVG downloads
+- [x] File-backed catalog and precomputed-result loading with demo fallback
 - [x] Editable architecture diagram and presentation export
 - [ ] Connect precomputed Tahoe-100M result artifacts
 - [ ] Connect production PCA, trajectory, and population-statistics outputs

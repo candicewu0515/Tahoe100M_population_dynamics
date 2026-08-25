@@ -146,7 +146,7 @@
               <label for="dose">Selected dose</label>
               <div class="dose-control">
                 <input id="dose" name="dose" type="range" min="0" max="3" step="1" value="2">
-                <div class="dose-ticks" aria-hidden="true"><span>0.01</span><span>0.1</span><span>1</span><span>10 µM</span></div>
+                <div class="dose-ticks" aria-hidden="true"><span>DMSO</span><span>0.1</span><span>1</span><span>10 µM</span></div>
               </div>
 
               <label for="feature">Gene or pathway</label>
@@ -169,8 +169,8 @@
                 </div>
               </fieldset>
 
-              <button class="button button-run" id="run-analysis" type="submit"><span>Run demo analysis</span><i aria-hidden="true">→</i></button>
-              <p class="control-footnote"><span class="status-dot"></span> Ready for a precomputed API or JSON result store</p>
+              <button class="button button-run" id="run-analysis" type="submit"><span>Run analysis</span><i aria-hidden="true">→</i></button>
+              <p class="control-footnote"><span class="status-dot"></span><span id="data-source-status">Loading query catalog…</span></p>
             </form>
           </aside>
 
@@ -181,7 +181,11 @@
                 <h3 id="condition-title">A549 × Trametinib</h3>
                 <p id="condition-subtitle">1 µM · MAPK signaling · Population statistics</p>
               </div>
-              <div class="result-status"><span></span> Demo result ready</div>
+              <div class="result-actions">
+                <button class="utility-button" id="share-query" type="button" title="Copy a link to this query">Share link</button>
+                <button class="utility-button" id="download-json" type="button" title="Download the standardized result">JSON ↓</button>
+                <div class="result-status"><span></span><b id="result-status-text">Demo result ready</b></div>
+              </div>
             </div>
 
             <div class="view-tabs" role="tablist" aria-label="Analysis view">
@@ -242,7 +246,7 @@
                   <div><dt>Compound</dt><dd id="meta-drug">Trametinib</dd></div>
                   <div><dt>Dose</dt><dd id="meta-dose">1 µM</dd></div>
                   <div><dt>Feature</dt><dd id="meta-feature">MAPK signaling</dd></div>
-                  <div><dt>Provenance</dt><dd>Illustrative browser demo</dd></div>
+                  <div><dt>Provenance</dt><dd id="meta-provenance">Illustrative browser demo</dd></div>
                 </dl>
                 <div class="metadata-links">
                   <a id="cellosaurus-link" href="https://www.cellosaurus.org/" target="_blank" rel="noreferrer">Cellosaurus <span>↗</span></a>
