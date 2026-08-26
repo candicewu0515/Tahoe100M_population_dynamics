@@ -5,7 +5,7 @@
 <p><strong>A public, dose-aware interface for population-level single-cell perturbation modeling.</strong></p>
 
 <p>
-  <a href="https://candicewu0515.github.io/Tahoe100M_population_dynamics/">
+  <a href="https://collaborativebioinformatics.github.io/Tahoe100M_population_dynamics/">
     <img alt="Launch live prototype" src="https://img.shields.io/badge/LAUNCH-LIVE%20PROTOTYPE-2563EB?style=for-the-badge&logo=githubpages&logoColor=white">
   </a>
   <img alt="Tahoe-100M" src="https://img.shields.io/badge/DATA-TAHOE--100M-0F766E?style=for-the-badge">
@@ -22,10 +22,10 @@
 ## Live interface
 
 <div align="center">
-  <a href="https://candicewu0515.github.io/Tahoe100M_population_dynamics/">
+  <a href="https://collaborativebioinformatics.github.io/Tahoe100M_population_dynamics/">
     <img src="docs/assets/dashboard-preview.png" alt="Tahoe-100M Perturbation Explorer dashboard preview" width="100%">
   </a>
-  <p><a href="https://candicewu0515.github.io/Tahoe100M_population_dynamics/"><strong>Open the interactive prototype →</strong></a></p>
+  <p><a href="https://collaborativebioinformatics.github.io/Tahoe100M_population_dynamics/"><strong>Open the interactive prototype →</strong></a></p>
 </div>
 
 The prototype is a static GitHub Pages site, so it needs no AWS account, paid hosting, or custom domain. The browser receives compact, precomputed result objects rather than the 100-million-cell expression matrix.
