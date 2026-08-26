@@ -53,6 +53,8 @@ The prototype is a static GitHub Pages site, so it needs no AWS account, paid ho
 |---|---|---|
 | **Public interface** | Drug, cell line, dose, gene, pathway, and requested analysis | Interactive views, linked metadata, result tables, and analysis requests |
 | **Population statistics** | Selected condition and expression summaries | Effect size, heterogeneity, differential expression, uncertainty, and candidate non-responder signals |
+
+The population-statistics module is specified in [`docs/RESPONSE_COMPLETENESS.md`](docs/RESPONSE_COMPLETENESS.md), with baseline utilities under [`analysis/`](analysis/).
 | **PCA analysis** | Selected drug and cell-line condition | PCA coordinates and visualization |
 | **Dose trajectory** | DMSO and available drug concentrations | Dose-aware transcriptional trajectory and plot |
 
@@ -88,12 +90,13 @@ Team-facing files are documented in the [`docs/data` integration guide](docs/dat
 
 ## Group 6
 
-| Team member | Current focus |
+|| Team member | Current focus |
 |---|---|
 | **Don Baldwin** — Lead | Sequence-data access and project coordination |
+| Abolaji Shiwoku | Statistical models for population dynamics |
+| Anna Sokolova | Response-completeness scoring, DMSO calibration, QC checks, and plate 6/14 validation |
 | Cecilia Mathó | PCA tool |
 | Tuneer R. Mallick | Trajectory tool |
-| Abolaji Shiwoku | Statistical models for population dynamics |
 | Xia (Candice) Wu | Dataset user interface |
 | Gerald McCollum | Writing and documentation |
 
