@@ -26,6 +26,7 @@
     <img src="docs/assets/dashboard-preview.png" alt="Tahoe-100M Perturbation Explorer dashboard preview" width="100%">
   </a>
   <p><a href="https://collaborativebioinformatics.github.io/Tahoe100M_population_dynamics/"><strong>Open the interactive prototype →</strong></a></p>
+  <p><strong>Interface and website design by Xia (Candice) Wu.</strong></p>
 </div>
 
 The prototype is a static GitHub Pages site, so it needs no AWS account, paid hosting, or custom domain. The browser receives compact, precomputed result objects rather than the 100-million-cell expression matrix.
@@ -53,10 +54,10 @@ The prototype is a static GitHub Pages site, so it needs no AWS account, paid ho
 |---|---|---|
 | **Public interface** | Drug, cell line, dose, gene, pathway, and requested analysis | Interactive views, linked metadata, result tables, and analysis requests |
 | **Population statistics** | Selected condition and expression summaries | Effect size, heterogeneity, differential expression, uncertainty, and candidate non-responder signals |
-
-The population-statistics module is specified in [`docs/RESPONSE_COMPLETENESS.md`](docs/RESPONSE_COMPLETENESS.md), with baseline utilities under [`analysis/`](analysis/).
 | **PCA analysis** | Selected drug and cell-line condition | PCA coordinates and visualization |
 | **Dose trajectory** | DMSO and available drug concentrations | Dose-aware transcriptional trajectory and plot |
+
+The population-statistics module is specified in [`docs/RESPONSE_COMPLETENESS.md`](docs/RESPONSE_COMPLETENESS.md), with baseline utilities under [`analysis/`](analysis/).
 
 ## Integration contract
 
@@ -90,14 +91,13 @@ Team-facing files are documented in the [`docs/data` integration guide](docs/dat
 
 ## Group 6
 
-|| Team member | Current focus |
+| Team member | Current focus |
 |---|---|
 | **Don Baldwin** — Lead | Sequence-data access and project coordination |
 | Abolaji Shiwoku | Statistical models for population dynamics |
-| Anna Sokolova | Response-completeness scoring, DMSO calibration, QC checks, and plate 6/14 validation |
 | Cecilia Mathó | PCA tool |
 | Tuneer R. Mallick | Trajectory tool |
-| Xia (Candice) Wu | Dataset user interface |
+| Xia (Candice) Wu | Interface and website design |
 | Gerald McCollum | Writing and documentation |
 
 ## Run locally
