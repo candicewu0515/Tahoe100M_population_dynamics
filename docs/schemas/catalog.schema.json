@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tahoe100m/catalog.schema.json",
+  "title": "Tahoe-100M interface catalog",
+  "type": "object",
+  "required": ["schema_version", "cell_lines", "drugs", "doses_um", "features", "analyses"],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "data_status": { "type": "string" },
+    "cell_lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "tissue"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "tissue": { "type": "string" },
+          "cellosaurus": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "drugs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "target": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "doses_um": { "type": "array", "items": { "type": "number", "minimum": 0 } },
+    "features": { "type": "array", "items": { "type": "string" } },
+    "analyses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "properties": { "id": { "type": "string" }, "label": { "type": "string" } },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

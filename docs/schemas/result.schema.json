@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/tahoe100m/result.schema.json",
+  "title": "Tahoe-100M standardized analysis result",
+  "type": "object",
+  "required": ["schema_version", "query", "summary", "dose_response", "features", "metadata", "provenance"],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "query": {
+      "type": "object",
+      "required": ["cell_line", "drug", "dose_um", "feature", "analysis"],
+      "properties": {
+        "cell_line": { "type": "string" },
+        "drug": { "type": "string" },
+        "dose_um": { "type": "number", "minimum": 0 },
+        "feature": { "type": "string" },
+        "analysis": { "enum": ["population", "pca", "trajectory"] }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": ["response_score", "baseline_score", "effect_size", "responding_percent", "intermediate_percent", "residual_percent", "cell_count"],
+      "properties": {
+        "response_score": { "type": "number" },
+        "baseline_score": { "type": "number" },
+        "effect_size": { "type": "number" },
+        "responding_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+        "intermediate_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+        "residual_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+        "cell_count": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "dose_response": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["label", "dose_um", "score"],
+        "properties": {
+          "label": { "type": "string" },
+          "dose_um": { "type": "number", "minimum": 0 },
+          "score": { "type": "number" },
+          "ci_low": { "type": "number" },
+          "ci_high": { "type": "number" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["feature", "effect", "fdr", "direction"],
+        "properties": {
+          "feature": { "type": "string" },
+          "effect": { "type": "number" },
+          "fdr": { "type": "string" },
+          "direction": { "enum": ["up", "down"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "metadata": { "type": "object" },
+    "provenance": {
+      "type": "object",
+      "required": ["source", "is_demo"],
+      "properties": {
+        "source": { "type": "string" },
+        "is_demo": { "type": "boolean" },
+        "generated_at": { "type": "string" },
+        "method": { "type": "string" },
+        "warning": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

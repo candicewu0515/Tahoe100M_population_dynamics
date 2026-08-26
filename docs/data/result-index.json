@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "entries": [
+    {
+      "key": "A549|Trametinib|1|MAPK signaling|population",
+      "file": "data/results/a549-trametinib-1-mapk-population.json",
+      "is_demo": true
+    }
+  ]
+}
