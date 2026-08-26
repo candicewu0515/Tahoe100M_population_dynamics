@@ -91,16 +91,10 @@ Team-facing files are documented in the [`docs/data` integration guide](docs/dat
 | Team member | Current focus |
 |---|---|
 | **Don Baldwin** — Lead | Sequence-data access and project coordination |
-| Apoorva Apoorva | Team member |
 | Cecilia Mathó | PCA tool |
-| Amirhossein Ghorbanpour | Team member |
-| Anna Sokolova | Team member |
-| Pranavathiyani Gnanasekar | Team member |
 | Tuneer R. Mallick | Trajectory tool |
-| Ali Rizvi | Team member |
 | Abolaji Shiwoku | Statistical models for population dynamics |
-| Sidharth Raghavan | Team member |
-| Candice Wu | Dataset user interface |
+| Xia (Candice) Wu | Dataset user interface |
 | Gerald McCollum | Writing and documentation |
 
 ## Run locally
