@@ -2,7 +2,7 @@
 
 
 **Event window:** Tue 2026-08-25 → Thu 2026-08-27 (3-day hackathon)
-**Last updated:** 2026-08-25 (Day 1)
+**Last updated:** 2026-08-26 (Day 2)
 
 > This is a living document. It will be updated it after each huddle/standup so anyone (including async/remote teammates) can get oriented quickly.
 
@@ -77,17 +77,18 @@ This explicitly moves beyond pseudo-bulk/mean-expression analysis, which masks p
 
 ---
 
-## 5. Action items (as of Huddle 1)
+## 5. Action items (as of Huddle 1, updated Day 2)
 
 | Owner | Task | Status |
 |---|---|---|
-| Candice Wu | Lead investigation of tools/platforms for data interface / browser widget | Open |
+| Candice Wu | Lead investigation of tools/platforms for data interface / browser widget | ✅ Interface prototype built and merged (PR #1) — static GitHub Pages site under `docs/` (selectors, demo charts, metadata panel, shareable query URLs, file-backed catalog/result loading with demo fallback). Deployed so far only via Candice's own fork's Pages (`candicewu0515.github.io/...`) — org-repo Pages not yet enabled, see §6. Still open: connect real Tahoe-100M result artifacts, wire up production PCA/trajectory/population-statistics outputs |
 | Tuneer | Investigate trajectory / state-space branching analysis methods & tools | Open |
 | Cecilia Mathó | Research PCA visualization tools; assess pandrugs.org applicability | Open |
 | Abdul Shiwoku | Set up GitHub repo (contact Ben Busby for project access) | ✅ Done — [`Tahoe100M_population_dynamics`](https://github.com/collaborativebioinformatics/Tahoe100M_population_dynamics) created under the `collaborativebioinformatics` org (MIT licensed) |
 | Don Baldwin | Pursue raw sequence data (FASTQ/BAM) via DNA Nexus / Tahoe-100M team | Open |
 | Abdul Shiwoku | Research statistical methods for subpopulation detection with confidence measures (p-values, detection sensitivity) | Open |
 | Anna Sokolova | Response-completeness scoring module: plate 6 prototype, DMSO calibration, uncertainty estimates, plate 14 validation, figure + Methods text | Open (volunteered; confirm no overlap with anyone else claiming this) |
+| (analysis modules, any owner) | Produce real precomputed result JSON files matching `docs/schemas/result.schema.json` so the interface can move off demo data | Open — only one illustrative demo result exists so far (`a549-trametinib-1-mapk-population.json`), see §6 |
 
 ---
 
@@ -97,8 +98,9 @@ This explicitly moves beyond pseudo-bulk/mean-expression analysis, which masks p
 - Confirm ownership of the response-completeness module is Anna's alone, or whether it should be split (she offered to coordinate if someone else already started).
 - Finalize the scoring rule / calibration approach (DMSO-vs-DMSO baseline) — needs concrete method before plate 6 prototyping can be "frozen."
 - Status of raw FASTQ/BAM access request (Don) — determines whether splicing/variant-calling work is unlocked at all this hackathon.
-- GitHub repo status / access (Abdul + Ben Busby).
 - Terminology alignment across team: use "state-space branching / response geometry," "control-like residual population," "candidate incomplete-response state" — avoid "trajectory," "resistant," "persister" in write-ups.
+- **GitHub Pages is not yet enabled on the org repo** (`collaborativebioinformatics/Tahoe100M_population_dynamics`). The `Deploy GitHub Pages` Actions workflow (`.github/workflows/pages.yml`) ran once on `main` and failed at the `Configure Pages` step ("Get Pages site failed... Pages enabled and configured to build using GitHub Actions?"). Someone with repo admin access needs to go to Settings → Pages → set Source to "GitHub Actions" (or add `enablement: true` to the workflow's `configure-pages` step) before the org repo has a live URL of its own. Until then, the only working live demo is Candice's personal fork's Pages site (linked from the README).
+- Analysis modules (PCA, trajectory, population-statistics) still need to emit real result files matching `docs/schemas/result.schema.json` and get indexed in `docs/data/result-index.json` / `docs/data/catalog.json` — right now the interface only has one illustrative demo result wired up.
 
 ---
 
@@ -113,7 +115,13 @@ This explicitly moves beyond pseudo-bulk/mean-expression analysis, which masks p
 - Team's actual GitHub repo, [`Tahoe100M_population_dynamics`](https://github.com/collaborativebioinformatics/Tahoe100M_population_dynamics) (`collaborativebioinformatics` org, MIT license, Abdul's setup), was cloned into this working directory. It had a placeholder README (title + mermaid architecture diagram matching `flowchart.docx`) and a LICENSE. Merged the drafted README content into it (preserving the existing mermaid diagram as-authored) and copied this `PROJECT_SUMMARY.md` in as the repo's living log. Changes are in the local working tree only — not yet committed/pushed.
 
 ### Day 2 — Wed 2026-08-26
-- *(to be filled in)*
+- **PR #1** (`candicewu0515:docs/fancy-flowchart`, "Add polished README and interactive GitHub Pages prototype") merged into `main`. Candice shipped the first working version of the public interface: a static GitHub Pages site under `docs/` (`index.html`, `assets/app.js`, `assets/styles.css`) with drug/cell-line/dose/feature/analysis selectors, demo charts, a linked-metadata panel, shareable query URLs, and JSON/CSV/SVG export — currently running on **illustrative demo data**, explicitly labeled as such. A polished `docs/group6-workflow.{mmd,svg,png}` architecture diagram (public interface → population-statistics / PCA / dose-trajectory modules) replaced the earlier flowchart draft, along with a "Run locally" (`python3 -m http.server 8000 --directory docs`) section and an integration contract (standardized JSON condition-request/result objects) in the README.
+- A follow-up commit on that same PR (`df13e73`, "Add shareable file-backed result integration") added the data-loading side of the contract: `docs/data/catalog.json` (selectable cell lines/drugs/doses/features/analyses), `docs/data/result-index.json` (query-key → result-file map), one real precomputed example result (`docs/data/results/a549-trametinib-1-mapk-population.json`), versioned JSON Schemas (`docs/schemas/catalog.schema.json`, `docs/schemas/result.schema.json`), and a `docs/data/README.md` guide for teammates on how to drop in real analysis outputs. The interface falls back to a deterministic demo response when a query isn't indexed.
+- **PR #2** ("Add project summary log and logo," `docs/readme-summary`) was opened and then closed without merging — superseded by PR #3.
+- **PR #3** ("adds PROJECT_SUMMARY.md") merged this `PROJECT_SUMMARY.md` into the repo as the team's committed living log (previously it only existed in the local working tree, per the Day 1 note above).
+- The README's team roster expanded beyond the six people captured in §1 (adds Apoorva Apoorva, Amirhossein Ghorbanpour, Pranavathiyani Gnanasekar, Ali Rizvi, Sidharth Raghavan, and lists Gerald McCollam as writing/documentation) — §1 hasn't been reconciled with this yet; treat the README's "Group 6" table as the more current roster until this doc is updated.
+- Checked CI: `.github/workflows/pages.yml` ("Deploy GitHub Pages") ran once (triggered by the PR #1 merge) and **failed** at `Configure Pages` — GitHub Pages isn't enabled for the org repo yet. See the new open question in §6; needs a repo admin to flip Settings → Pages → Source to "GitHub Actions" before the org repo serves its own live URL (the README's live-demo link currently points at Candice's personal fork's Pages site instead).
+- Repo state as of this update: `main` clean, up to date with `origin/main`, no open PRs or issues.
 
 ### Day 3 — Thu 2026-08-27
 - *(to be filled in)*
