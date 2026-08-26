@@ -53,6 +53,8 @@ The prototype is a static GitHub Pages site, so it needs no AWS account, paid ho
 |---|---|---|
 | **Public interface** | Drug, cell line, dose, gene, pathway, and requested analysis | Interactive views, linked metadata, result tables, and analysis requests |
 | **Population statistics** | Selected condition and expression summaries | Effect size, heterogeneity, differential expression, uncertainty, and candidate non-responder signals |
+
+The population-statistics module is specified in [`docs/RESPONSE_COMPLETENESS.md`](docs/RESPONSE_COMPLETENESS.md), with baseline utilities under [`analysis/`](analysis/).
 | **PCA analysis** | Selected drug and cell-line condition | PCA coordinates and visualization |
 | **Dose trajectory** | DMSO and available drug concentrations | Dose-aware transcriptional trajectory and plot |
 
@@ -94,7 +96,7 @@ Team-facing files are documented in the [`docs/data` integration guide](docs/dat
 | Apoorva Apoorva | Team member |
 | Cecilia Mathó | PCA tool |
 | Amirhossein Ghorbanpour | Team member |
-| Anna Sokolova | Team member |
+| Anna Sokolova | Response-completeness scoring, DMSO calibration, QC checks, and plate 6/14 validation |
 | Pranavathiyani Gnanasekar | Team member |
 | Tuneer R. Mallick | Trajectory tool |
 | Ali Rizvi | Team member |
