@@ -12,8 +12,7 @@
 | Name | Background | Focus area |
 |---|---|---|
 | Don Baldwin | Biology; former lead, UPenn bioinformatics corps | Raw sequence data access, figures |
-| Anna Sokolova | Computational biology, signal processing, EEG/BCI, ML pipelines | Response-completeness scoring: plate 6 prototype → DMSO calibration → plate 14 validation |
-| Candice Wu | PhD candidate, sequencing & bioinformatics (Univ. of Iowa) | Data interface / browser widget |
+| Xia (Candice) Wu | PhD candidate, sequencing & bioinformatics (Univ. of Iowa) | Data interface / browser widget |
 | Tuneer | PhD candidate, genomics (oral cancer), single-cell + WGS + transcriptomics | Trajectory / state-space branching analysis |
 | Abdul Shiwoku | Math/stats, systems analyst, transitioning into bioinformatics | Repo infrastructure; statistical methods for subpopulation detection |
 | Cecilia Mathó | Assistant professor of genetics (Universidad de la República) | PCA visualization; pandrugs.org / annotation feasibility |
@@ -71,7 +70,7 @@ This explicitly moves beyond pseudo-bulk/mean-expression analysis, which masks p
 1. **Core (Day 1–2 priority):** One ranked response-completeness table across conditions.
 2. One **plate-14-replicated example** where the mean hides a residual/split response (mean vs. distribution story).
 3. One **testable follow-up compound hypothesis**, chosen because its Tahoe signature opposes the residual expression program in the same cell line — explicitly framed as a *hypothesis for a future combination experiment*, not evidence of synergy.
-4. **Stretch:** Data browser/widget (Candice) — most compelling if it displays a validated real result (drug + cell line → mean shift, response coverage, distribution shape, plate replication, pathways) rather than being the main deliverable itself.
+4. **Stretch:** Data browser/widget, led by Xia (Candice) Wu — most compelling if it displays a validated real result (drug + cell line → mean shift, response coverage, distribution shape, plate replication, pathways) rather than being the main deliverable itself.
 5. **Stretch:** External annotation tie-ins — pandrugs.org / DepMap for genotype interpretation or follow-up compound nomination (Cecilia investigating).
 6. **Out of core scope for now:** Variant calling / splicing / allele-specific expression — blocked on FASTQ/BAM availability (Don pursuing). Public release only has expression matrices + metadata; not sufficient for defensible variant calling.
 
@@ -81,13 +80,12 @@ This explicitly moves beyond pseudo-bulk/mean-expression analysis, which masks p
 
 | Owner | Task | Status |
 |---|---|---|
-| Candice Wu | Lead investigation of tools/platforms for data interface / browser widget | ✅ Interface prototype built and merged (PR #1) — static GitHub Pages site under `docs/` (selectors, demo charts, metadata panel, shareable query URLs, file-backed catalog/result loading with demo fallback). Deployed so far only via Candice's own fork's Pages (`candicewu0515.github.io/...`) — org-repo Pages not yet enabled, see §6. Still open: connect real Tahoe-100M result artifacts, wire up production PCA/trajectory/population-statistics outputs |
+| Xia (Candice) Wu | Lead investigation of tools/platforms for data interface / browser widget | ✅ Interface prototype built and merged (PR #1) — static GitHub Pages site under `docs/` (selectors, demo charts, metadata panel, shareable query URLs, file-backed catalog/result loading with demo fallback). Deployed so far only via Xia's own fork's Pages (`candicewu0515.github.io/...`) — org-repo Pages not yet enabled, see §6. Still open: connect real Tahoe-100M result artifacts, wire up production PCA/trajectory/population-statistics outputs |
 | Tuneer | Investigate trajectory / state-space branching analysis methods & tools | Open |
 | Cecilia Mathó | Research PCA visualization tools; assess pandrugs.org applicability | Open |
 | Abdul Shiwoku | Set up GitHub repo (contact Ben Busby for project access) | ✅ Done — [`Tahoe100M_population_dynamics`](https://github.com/collaborativebioinformatics/Tahoe100M_population_dynamics) created under the `collaborativebioinformatics` org (MIT licensed) |
 | Don Baldwin | Pursue raw sequence data (FASTQ/BAM) via DNA Nexus / Tahoe-100M team | Open |
 | Abdul Shiwoku | Research statistical methods for subpopulation detection with confidence measures (p-values, detection sensitivity) | Open |
-| Anna Sokolova | Response-completeness scoring module: plate 6 prototype, DMSO calibration, uncertainty estimates, plate 14 validation, figure + Methods text | Open (volunteered; confirm no overlap with anyone else claiming this) |
 | (analysis modules, any owner) | Produce real precomputed result JSON files matching `docs/schemas/result.schema.json` so the interface can move off demo data | Open — only one illustrative demo result exists so far (`a549-trametinib-1-mapk-population.json`), see §6 |
 
 ---
@@ -95,11 +93,10 @@ This explicitly moves beyond pseudo-bulk/mean-expression analysis, which masks p
 ## 6. Open questions / things to confirm at next huddle
 
 - Which exact dataset subset are we analyzing (47 lines/390 drugs vs. full ~50 lines/~1,100 compounds)? Needed before README/slides.
-- Confirm ownership of the response-completeness module is Anna's alone, or whether it should be split (she offered to coordinate if someone else already started).
 - Finalize the scoring rule / calibration approach (DMSO-vs-DMSO baseline) — needs concrete method before plate 6 prototyping can be "frozen."
 - Status of raw FASTQ/BAM access request (Don) — determines whether splicing/variant-calling work is unlocked at all this hackathon.
 - Terminology alignment across team: use "state-space branching / response geometry," "control-like residual population," "candidate incomplete-response state" — avoid "trajectory," "resistant," "persister" in write-ups.
-- **GitHub Pages is not yet enabled on the org repo** (`collaborativebioinformatics/Tahoe100M_population_dynamics`). The `Deploy GitHub Pages` Actions workflow (`.github/workflows/pages.yml`) ran once on `main` and failed at the `Configure Pages` step ("Get Pages site failed... Pages enabled and configured to build using GitHub Actions?"). Someone with repo admin access needs to go to Settings → Pages → set Source to "GitHub Actions" (or add `enablement: true` to the workflow's `configure-pages` step) before the org repo has a live URL of its own. Until then, the only working live demo is Candice's personal fork's Pages site (linked from the README).
+- **GitHub Pages is not yet enabled on the org repo** (`collaborativebioinformatics/Tahoe100M_population_dynamics`). The `Deploy GitHub Pages` Actions workflow (`.github/workflows/pages.yml`) ran once on `main` and failed at the `Configure Pages` step ("Get Pages site failed... Pages enabled and configured to build using GitHub Actions?"). Someone with repo admin access needs to go to Settings → Pages → set Source to "GitHub Actions" (or add `enablement: true` to the workflow's `configure-pages` step) before the org repo has a live URL of its own. Until then, the only working live demo is Xia's personal fork's Pages site (linked from the README).
 - Analysis modules (PCA, trajectory, population-statistics) still need to emit real result files matching `docs/schemas/result.schema.json` and get indexed in `docs/data/result-index.json` / `docs/data/catalog.json` — right now the interface only has one illustrative demo result wired up.
 
 ---
@@ -108,19 +105,17 @@ This explicitly moves beyond pseudo-bulk/mean-expression analysis, which masks p
 
 ### Day 1 — Tue 2026-08-25
 - Huddle 1: team intros, dataset overview, initial direction (trajectory/branching + PCA + population completeness), action items assigned.
-- Anna Sokolova (async, could not attend follow-up): proposed refined scope — response-completeness as core deliverable, evidence-ladder validation (plate 6 → plate 14), guardrails on thresholding/labeling, deliverable priority list.
 - Read the Tahoe-100M paper (Zhang/Ubas/de Borja et al. 2025, bioRxiv) for background context — confirmed dataset numbers, confirmed plate 6/14 replicate status independently, resolved the "which subset" open question (see §2).
-- Received a draft architecture flowchart: **User Interface** (goals: visualize by drug/cell line, launch stat analysis tool, show linked metadata) dispatching to two parallel analysis modules — **Trajectory analysis** and **PCA analysis** — each taking UI input, calling a tool or running compute, and returning a plot to the UI. This matches Candice's (UI/widget) + Tuneer's (trajectory) + Cecilia's (PCA) assignments.
+- Received a draft architecture flowchart: **User Interface** (goals: visualize by drug/cell line, launch stat analysis tool, show linked metadata) dispatching to two parallel analysis modules — **Trajectory analysis** and **PCA analysis** — each taking UI input, calling a tool or running compute, and returning a plot to the UI. This matches Xia's (UI/widget) + Tuneer's (trajectory) + Cecilia's (PCA) assignments.
 - Drafted repo `README.md`.
 - Team's actual GitHub repo, [`Tahoe100M_population_dynamics`](https://github.com/collaborativebioinformatics/Tahoe100M_population_dynamics) (`collaborativebioinformatics` org, MIT license, Abdul's setup), was cloned into this working directory. It had a placeholder README (title + mermaid architecture diagram matching `flowchart.docx`) and a LICENSE. Merged the drafted README content into it (preserving the existing mermaid diagram as-authored) and copied this `PROJECT_SUMMARY.md` in as the repo's living log. Changes are in the local working tree only — not yet committed/pushed.
 
 ### Day 2 — Wed 2026-08-26
-- **PR #1** (`candicewu0515:docs/fancy-flowchart`, "Add polished README and interactive GitHub Pages prototype") merged into `main`. Candice shipped the first working version of the public interface: a static GitHub Pages site under `docs/` (`index.html`, `assets/app.js`, `assets/styles.css`) with drug/cell-line/dose/feature/analysis selectors, demo charts, a linked-metadata panel, shareable query URLs, and JSON/CSV/SVG export — currently running on **illustrative demo data**, explicitly labeled as such. A polished `docs/group6-workflow.{mmd,svg,png}` architecture diagram (public interface → population-statistics / PCA / dose-trajectory modules) replaced the earlier flowchart draft, along with a "Run locally" (`python3 -m http.server 8000 --directory docs`) section and an integration contract (standardized JSON condition-request/result objects) in the README.
+- **PR #1** (`candicewu0515:docs/fancy-flowchart`, "Add polished README and interactive GitHub Pages prototype") merged into `main`. Xia (Candice) Wu shipped the first working version of the public interface: a static GitHub Pages site under `docs/` (`index.html`, `assets/app.js`, `assets/styles.css`) with drug/cell-line/dose/feature/analysis selectors, demo charts, a linked-metadata panel, shareable query URLs, and JSON/CSV/SVG export — currently running on **illustrative demo data**, explicitly labeled as such. A polished `docs/group6-workflow.{mmd,svg,png}` architecture diagram (public interface → population-statistics / PCA / dose-trajectory modules) replaced the earlier flowchart draft, along with a "Run locally" (`python3 -m http.server 8000 --directory docs`) section and an integration contract (standardized JSON condition-request/result objects) in the README.
 - A follow-up commit on that same PR (`df13e73`, "Add shareable file-backed result integration") added the data-loading side of the contract: `docs/data/catalog.json` (selectable cell lines/drugs/doses/features/analyses), `docs/data/result-index.json` (query-key → result-file map), one real precomputed example result (`docs/data/results/a549-trametinib-1-mapk-population.json`), versioned JSON Schemas (`docs/schemas/catalog.schema.json`, `docs/schemas/result.schema.json`), and a `docs/data/README.md` guide for teammates on how to drop in real analysis outputs. The interface falls back to a deterministic demo response when a query isn't indexed.
 - **PR #2** ("Add project summary log and logo," `docs/readme-summary`) was opened and then closed without merging — superseded by PR #3.
 - **PR #3** ("adds PROJECT_SUMMARY.md") merged this `PROJECT_SUMMARY.md` into the repo as the team's committed living log (previously it only existed in the local working tree, per the Day 1 note above).
-- The README's team roster expanded beyond the six people captured in §1 (adds Apoorva Apoorva, Amirhossein Ghorbanpour, Pranavathiyani Gnanasekar, Ali Rizvi, Sidharth Raghavan, and lists Gerald McCollam as writing/documentation) — §1 hasn't been reconciled with this yet; treat the README's "Group 6" table as the more current roster until this doc is updated.
-- Checked CI: `.github/workflows/pages.yml` ("Deploy GitHub Pages") ran once (triggered by the PR #1 merge) and **failed** at `Configure Pages` — GitHub Pages isn't enabled for the org repo yet. See the new open question in §6; needs a repo admin to flip Settings → Pages → Source to "GitHub Actions" before the org repo serves its own live URL (the README's live-demo link currently points at Candice's personal fork's Pages site instead).
+- Checked CI: `.github/workflows/pages.yml` ("Deploy GitHub Pages") ran once (triggered by the PR #1 merge) and **failed** at `Configure Pages` — GitHub Pages isn't enabled for the org repo yet. See the new open question in §6; needs a repo admin to flip Settings → Pages → Source to "GitHub Actions" before the org repo serves its own live URL (the README's live-demo link currently points at Xia's personal fork's Pages site instead).
 - Repo state as of this update: `main` clean, up to date with `origin/main`, no open PRs or issues.
 
 ### Day 3 — Thu 2026-08-27
