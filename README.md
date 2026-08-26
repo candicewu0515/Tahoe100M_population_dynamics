@@ -90,19 +90,14 @@ Team-facing files are documented in the [`docs/data` integration guide](docs/dat
 
 ## Group 6
 
-| Team member | Current focus |
+|| Team member | Current focus |
 |---|---|
 | **Don Baldwin** — Lead | Sequence-data access and project coordination |
-| Apoorva Apoorva | Team member |
-| Cecilia Mathó | PCA tool |
-| Amirhossein Ghorbanpour | Team member |
-| Anna Sokolova | Response-completeness scoring, DMSO calibration, QC checks, and plate 6/14 validation |
-| Pranavathiyani Gnanasekar | Team member |
-| Tuneer R. Mallick | Trajectory tool |
-| Ali Rizvi | Team member |
 | Abolaji Shiwoku | Statistical models for population dynamics |
-| Sidharth Raghavan | Team member |
-| Candice Wu | Dataset user interface |
+| Anna Sokolova | Response-completeness scoring, DMSO calibration, QC checks, and plate 6/14 validation |
+| Cecilia Mathó | PCA tool |
+| Tuneer R. Mallick | Trajectory tool |
+| Xia (Candice) Wu | Dataset user interface |
 | Gerald McCollum | Writing and documentation |
 
 ## Run locally
